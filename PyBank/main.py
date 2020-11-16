@@ -32,10 +32,8 @@ for i in range(1,len(profits)):
 average_change = sum(monthly_change) / len(monthly_change)   
 maxprofit = max(profits)
 maxloss = min(profits)
-maxindex = profits.index(maxprofit)
-minindex = profits.index(maxloss)
-maxprofdate = date[maxindex]
-maxlossdate = date[minindex]
+maxprofdate = date[profits.index(maxprofit)]
+maxlossdate = date[profits.index(maxloss)]
 print(f'{net_profit} and {total_months} and {average_change}')
 print(f'{maxprofdate}: {maxprofit} and {maxlossdate}: {maxloss}')
 
