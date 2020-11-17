@@ -18,25 +18,18 @@ with open(csvpath, 'r') as csvfile:
         total_votes += 1
         candidate_votes[row[2]] += 1
 
-candidate_votes_sort = dict(sorted(candidate_votes.items(), key=lambda kv: kv[1], reverse=True))
+candidate_votes_sort = dict(sorted(candidate_votes.items(), key=lambda keyvalue: keyvalue[1], reverse=True))
 candidates = list(candidate_votes_sort.keys())
 votes_per = list(candidate_votes_sort.values())
 winner = candidates[0]
 
-candidate1_perc = votes_per[0]/total_votes
-candidate2_perc = votes_per[1]/total_votes
-candidate3_perc = votes_per[2]/total_votes
-candidate4_perc = votes_per[3]/total_votes
-
-
 print(f'Election Results')
 print(f'-------------------------')
-print(f'Total Votes: {total_votes}')
+print(f'Total Votes: {total_votes:,}')
 print(f'-------------------------')
-print(f'Khan: {candidate1_perc:.2%} ({votes_per[0]})')
-print(f'Correy: {candidate2_perc:.2%} ({votes_per[1]})')
-print(f'Li: {candidate3_perc:.2%} ({votes_per[2]})')
-print(f"O'Tooley: {candidate4_perc:.2%} ({votes_per[3]})")
+for x in range (0, len(candidates)):
+    print(f'{candidates[x]}: {votes_per[x]/total_votes:.2%} ({votes_per[x]:,})')
 print(f'-------------------------')
 print(f'Winner: {winner}')
 print(f'-------------------------')
+
