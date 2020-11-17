@@ -25,15 +25,15 @@ with open(csvpath, 'r') as csvfile:
         profits.append(revenue)
         date.append(row[0])
 
-
 for i in range(1,len(profits)):
     monthly_change.append(profits[i] - profits[i-1])
+average_change = sum(monthly_change) / len(monthly_change)  
 
-average_change = sum(monthly_change) / len(monthly_change)   
 maxprofit = max(profits)
 maxloss = min(profits)
 maxprofdate = date[profits.index(maxprofit)]
 maxlossdate = date[profits.index(maxloss)]
+
 print(f'{net_profit} and {total_months} and {average_change}')
 print(f'{maxprofdate}: {maxprofit} and {maxlossdate}: {maxloss}')
 
