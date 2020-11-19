@@ -5,7 +5,7 @@ import os
 import csv
 #Module for Counter function
 import collections
-
+newtxt = os.path.join("analysis", "polling-results.txt")
 csvpath = os.path.join("Resources", "election_data.csv")
 total_votes = 0
 candidate_votes = collections.Counter()
@@ -33,4 +33,15 @@ for x in range (0, len(candidates)):
 print(f'-------------------------')
 print(f'Winner: {winner}')
 print(f'-------------------------')
+
+with open(newtxt, 'w', newline="") as writer:
+    writer.write(f'Election Results\n')
+    writer.write(f'-------------------------\n')
+    writer.write(f'Total Votes: {total_votes:,}\n')
+    writer.write(f'-------------------------\n')
+    for x in range (0, len(candidates)):
+        writer.write(f'{candidates[x]}: {votes_per[x]/total_votes:.2%} ({votes_per[x]:,})\n')
+    writer.write(f'-------------------------\n')
+    writer.write(f'Winner: {winner}\n')
+    writer.write(f'-------------------------\n')
 

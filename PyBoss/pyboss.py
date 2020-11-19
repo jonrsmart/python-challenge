@@ -65,6 +65,7 @@ ssn_priv = []
 empid = []
 state_abb = []
 
+newemp = os.path.join("output","employee_summary.csv")
 csvpath = os.path.join("employee_data.csv")
 
 with open(csvpath, 'r') as csvfile:
@@ -86,5 +87,8 @@ with open(csvpath, 'r') as csvfile:
         ssn_priv.append('***-**-' + ssn_raw.split("-")[2])
         state_abb.append(us_state_abbrev.get(full_state))
 
-for x in range(0,len(f_name)):
-    print(f'{f_name[x]} {l_name[x]} {dob_form[x]} {ssn_priv[x]} {empid[x]} {state_abb[x]}')
+with open(newemp, "w", newline="") as datafile:
+    writer = csv.writer(datafile)
+    writer.writerow(["Emp ID","First Name","Last Name","DOB", "SSN","State"])
+    for x in range(0,len(f_name)):
+        writer.writerow([empid[x], f_name[x], l_name[x], dob_form[x], ssn_priv[x], state_abb[x]])

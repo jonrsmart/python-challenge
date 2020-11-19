@@ -3,7 +3,7 @@
 import os
 # Module for reading CSV files
 import csv
-
+newtxt = os.path.join("analysis","profits.txt")
 csvpath = os.path.join("Resources", "budget_data.csv")
 net_profit = 0
 profits = []
@@ -34,8 +34,23 @@ maxloss = min(profits)
 maxprofdate = date[profits.index(maxprofit)]
 maxlossdate = date[profits.index(maxloss)]
 
-print(f'{net_profit} and {total_months} and {average_change}')
-print(f'{maxprofdate}: {maxprofit} and {maxlossdate}: {maxloss}')
+print(f'Financial Analysis')
+print(f'----------------------------')
+print(f'Total Months: {total_months}')
+print(f'Total: ${net_profit:,}')
+print(f'Average Change: ${average_change:+.2f}')
+print(f'Greatest Increase in Profits: {maxprofdate} ({maxprofit:,})')
+print(f'Greatest Decrease in Profits: {maxlossdate} ({maxloss:,})')
 
-   
+
+
+with open(newtxt, 'w', newline="") as writer:
+    writer.write(f'Financial Analysis\n')
+    writer.write(f'----------------------------\n')
+    writer.write(f'Total Months: {total_months}\n')
+    writer.write(f'Total: ${net_profit:,}\n')
+    writer.write(f'Average Change: ${average_change:+.2f}\n')
+    writer.write(f'Greatest Increase in Profits: {maxprofdate} ({maxprofit:,})\n')
+    writer.write(f'Greatest Decrease in Profits: {maxlossdate} ({maxloss:,})\n')
+  
         
